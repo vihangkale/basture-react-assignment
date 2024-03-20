@@ -6,11 +6,13 @@ import styles from "../styles/profileCard.module.css";
 import LinksWithIcons from "./linksWithIcons";
 import AvatarWithTitle from "./avatarWithTitle";
 import ActionButtons from "./ActionButtons";
+import CardLoader from "./cardLoader";
 
 export default function ProfileCard({
   dataObj,
   handleFollowUser,
   handleDeleteUser,
+  isLoading,
 }) {
   const { id, username, email, phone, website, isFollow } = dataObj ?? {};
   return (
@@ -22,18 +24,24 @@ export default function ProfileCard({
       radius="md"
       withBorder
     >
-      <AvatarWithTitle
-        username={username}
-        website={website}
-        isFollow={isFollow}
-      />
-      <LinksWithIcons email={email} phone={phone} website={website} />
-      <ActionButtons
-        id={id}
-        isFollow={isFollow}
-        handleFollowUser={handleFollowUser}
-        handleDeleteUser={handleDeleteUser}
-      />
+      {isLoading ? (
+        <CardLoader isLoading={isLoading} />
+      ) : (
+        <>
+          <AvatarWithTitle
+            username={username}
+            website={website}
+            isFollow={isFollow}
+          />
+          <LinksWithIcons email={email} phone={phone} website={website} />
+          <ActionButtons
+            id={id}
+            isFollow={isFollow}
+            handleFollowUser={handleFollowUser}
+            handleDeleteUser={handleDeleteUser}
+          />
+        </>
+      )}
     </Card>
   );
 }

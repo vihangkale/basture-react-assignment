@@ -10,10 +10,10 @@ import ProfileCard from "../components/profileCard";
 import styles from "../styles/profileCard.module.css";
 export default function ProfileCards() {
   const [userData, setUserData] = useState([]);
-  const [isloading, setisloading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => getUserData(), []);
   function getUserData() {
-    setisloading(true);
+    setIsLoading(true);
     axios
       .get("https://jsonplaceholder.typicode.com/users")
       .then(function (response) {
@@ -30,7 +30,7 @@ export default function ProfileCards() {
         console.log(error);
       })
       .finally(function () {
-        setisloading(false);
+        setIsLoading(false);
       });
   }
   const handleFollowUser = (id) =>
@@ -44,13 +44,13 @@ export default function ProfileCards() {
 
   const handleDeleteUser = (id) =>
     setUserData((prevData) => prevData.filter((prevObj) => prevObj.id !== id));
-  console.log(userData, "ISFOLLOW");
   return (
     <Box className={styles.profileCardsContainer}>
       <Grid>
-        {userData?.map((dataObj) => (
+        {(isLoading ? new Array(10).fill(12) : userData)?.map((dataObj) => (
           <Grid.Col key={dataObj?.id} span={{ base: 12, md: 6, lg: 3 }}>
             <ProfileCard
+              isLoading={isLoading}
               key={dataObj?.id}
               dataObj={dataObj}
               handleFollowUser={handleFollowUser}
