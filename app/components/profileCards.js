@@ -48,7 +48,7 @@ export default function ProfileCards() {
     <Box className={styles.profileCardsContainer}>
       <Grid>
         {(isLoading ? new Array(10).fill(12) : userData)?.map((dataObj) => (
-          <Grid.Col key={dataObj?.id} span={{ base: 12, md: 6, lg: 3 }}>
+          <Grid.Col key={dataObj?.id} span={{ base: 12, sm: 6, md: 6, lg: 3 }}>
             <ProfileCard
               isLoading={isLoading}
               key={dataObj?.id}
