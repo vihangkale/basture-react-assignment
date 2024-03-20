@@ -1,0 +1,13 @@
+.profileCard {
+  height: 21.619rem;
+}
+.infoLink {
+  color: #868e96;
+}
+.deleteBtn {
+  color: #228be6;
+  border-color: #228be6;
+}
+.profileCardsContainer {
+  margin: 1.25rem;
+}
